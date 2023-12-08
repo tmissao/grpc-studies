@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package example.enumerations;
+
+enum EyeColor {
+  UNSPECIFIED = 0;
+  BROWN = 1;
+  BLUE = 2;
+  GREEN = 3;
+}
+
+message Enumeration {
+  EyeColor eye_color = 1;
+}

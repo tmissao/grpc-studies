@@ -16,3 +16,5 @@ It can be divided into the following sections:
 - [Proto3 Language Guide](https://protobuf.dev/programming-guides/proto3)
 - [Java Generated Code Guide](https://protobuf.dev/reference/java/java-generated)
 - [Python Generated Code Guide](https://protobuf.dev/reference/python/python-generated/)
+
+https://www.datascienceblog.net/post/programming/essential-protobuf-guide-python/
