@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package example.option;
+
+// Just affects the package of Java code generated
+option java_package = "br.com.example.option";
+// Creates Multiple Java Classes, basically removing the OuterClasses
+option java_multiple_files = true;
+
+message AnotherDummy {
+  uint32 id = 1;
+}

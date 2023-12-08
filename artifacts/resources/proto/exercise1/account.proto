@@ -1,0 +1,23 @@
+syntax = "proto3"
+
+enum AccountType {
+  UNSPECIFIED = 0;
+  SAVINGS = 1;
+  CHECKING = 2;
+  PORTABLE = 3;
+}
+/*
+  Account used to identifier an application user
+*/
+message Account {
+  uint32 id = 1;
+  string name = 2;
+  bytes thumbnail = 3; // picture in .jpeg format
+  bool is_verified = 4;
+
+  // height in meters
+  float height = 5;
+
+  repeated string phones = 6;
+  AccountType type = 7;
+}
