@@ -30,9 +30,10 @@ The tags field is what make serialization and deserialization possible
 ---
 ### `Number`
 
-- int32, int64, sint32, sint64
+- int32, int64 - (Not efficient serializing negative values) 
+- sint32, sint64 - (Not efficient serializing positive values)
 - uint32, uint64
-- fixed32, fixed64, sfixed32, sfixed64 - takes a fixed amount of bytes when serializing
+- fixed32, fixed64, sfixed32, sfixed64 - takes a fixed amount of bytes when serializing (The fixed family is used when you data have big numbers all the time)
 - float, double
 
 > On all the fields above the default value is 0
@@ -127,6 +128,8 @@ Map is a special structure that allow to create associative map
 Map Fields Rules:
 - Map fields cannot be repeated
 - When parsing from the wire or when merging, if there are duplicate map keys the last key seen is used. When parsing a map from text format, parsing may fail if there are duplicate keys.
+- Cannot use fload,double and enums/message as keys
+- The key is not ordering
 
 ## OneOf
 ---
@@ -144,7 +147,7 @@ Oneof fields are like regular fields except all the fields in a oneof share memo
 
 > Note that if multiple values are set, the last set value as determined by the order in the proto will overwrite all previous ones.
 
-
+`Cannot use repeated property`
 
 
 
