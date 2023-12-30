@@ -71,6 +71,17 @@ def call_sqrt(client: calculator_pb2_grpc.CalculatorStub, number: int):
             print(f'Error Code: {err.code()}, details: {err.details()}')
 
 
+# Error Handler Bidirectional Stream, server aborts the connection
+def call_many_sqrt(client: calculator_pb2_grpc.CalculatorStub, numbers: list[int]):
+    reqs = [sqrt_pb2.SqrtRequest(number=e) for e in numbers]
+    try:
+        res: Iterator[sqrt_pb2.SqrtResponse] = client.ManySqrt(reqs.__iter__())
+        for r in res:
+            print(r.result)
+    except grpc.RpcError as err:
+        print(f'Error Code: {err.code()}, details: {err.details()}')
+
+
 # Setting Timeout
 def call_nth_prime(client: calculator_pb2_grpc.CalculatorStub, nth_prime: int):
     req = prime_pb2.NthPrimeRequest(number=nth_prime)
@@ -91,8 +102,10 @@ def run():
     # call_max(client, numbers=[1, 5, 3, 6, 2, 21, 13])
     # call_sqrt(client, 36)
     # call_sqrt(client, -36) # Should raise an Error
-    call_nth_prime(client, nth_prime=1000)
+    call_many_sqrt(client, [4, 16, 36, -16, 121])
+    # call_nth_prime(client, nth_prime=1000)
     # call_nth_prime(client, nth_prime=20000) # Example with Timeout
+
 
 
 if __name__ == '__main__':

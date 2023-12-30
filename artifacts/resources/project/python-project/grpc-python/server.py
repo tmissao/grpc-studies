@@ -13,6 +13,21 @@ from typing import Iterator
 
 class CalculatorService(calculator_pb2_grpc.CalculatorServicer):
 
+    def ManySqrt(self, request_iterator: Iterator[sqrt_pb2.SqrtRequest], context):
+        for e in request_iterator:
+            number = e.number
+            print(number)
+            if number < 0:
+                context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+                context.set_details(f'Invalid Argument, the number should be an int, received: {number}')
+                context.abort(
+                    code=grpc.StatusCode.INVALID_ARGUMENT,
+                    details=f'Invalid Argument, the number should be an int, received: {number}'
+                )
+                yield sqrt_pb2.SqrtResponse()
+            else:
+                yield sqrt_pb2.SqrtResponse(result=int(math.sqrt(number)))
+
     def GetNthPrime(self, request: prime_pb2.NthPrimeRequest, context):
         nth_prime = request.number
         primes = [2]

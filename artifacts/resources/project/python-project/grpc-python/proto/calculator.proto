@@ -15,5 +15,6 @@ service Calculator {
   rpc Average(stream AverageRequest) returns (AverageResponse);
   rpc Max(stream MaxRequest) returns (stream MaxResponse);
   rpc Sqrt(SqrtRequest) returns (SqrtResponse);
+  rpc ManySqrt(stream SqrtRequest) returns (stream SqrtResponse);
   rpc GetNthPrime(NthPrimeRequest) returns (NthPrimeResponse);
 }
