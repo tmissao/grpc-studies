@@ -86,6 +86,21 @@ message Example {
 
 > The default value is an empty list
 
+## Optional Fields
+---
+
+Allows a field to optionally set, so the field could be in one of two possible states
+- the field is set, and contains a value that was explicitly set or parsed from the wire. It will be serialized to the wire.
+- the field is unset, and will return the default value. It will not be serialized to the wire.
+
+```proto
+message Example {
+  optional uint32 age = 1; // Zero or More values
+}
+```
+
+So in this case it is necessary to call the method `HasField("Age")` or `has_age()` in order to check if the field is set
+
 ## Enum
 ---
 
