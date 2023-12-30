@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package calculator;
+
+import "sum.proto";
+import "prime_decomposition.proto";
+import "average.proto";
+import "max.proto";
+import "sqrt.proto";
+import "prime.proto";
+
+service Calculator {
+  rpc Sum(SumRequest) returns (SumResponse);
+  rpc PrimeDecomposition(PrimeDecompositionRequest) returns (stream PrimeDecompositionResponse);
+  rpc Average(stream AverageRequest) returns (AverageResponse);
+  rpc Max(stream MaxRequest) returns (stream MaxResponse);
+  rpc Sqrt(SqrtRequest) returns (SqrtResponse);
+  rpc GetNthPrime(NthPrimeRequest) returns (NthPrimeResponse);
+}

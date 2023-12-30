@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package calculator;
+
+message NthPrimeRequest {
+  uint32 number = 1;
+}
+
+message NthPrimeResponse {
+  uint32 result = 1;
+}
